@@ -3,6 +3,7 @@ package twyszomirski.biddings.representations;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class BiddingRepresentation {
     private int id;
     private String name;
-    private List<String> participants;
+    private List<String> participants = new ArrayList<>();
 
     public BiddingRepresentation() {
     }
@@ -40,5 +41,10 @@ public class BiddingRepresentation {
 
     public List<String> getParticipants() {
         return participants;
+    }
+
+    public BiddingRepresentation addParticipant(String name){
+        participants.add(name);
+        return this;
     }
 }

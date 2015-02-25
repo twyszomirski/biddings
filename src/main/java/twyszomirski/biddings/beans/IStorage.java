@@ -22,5 +22,10 @@ public interface IStorage {
      */
     BiddingRepresentation createBidding(String name);
 
+    /**
+     * Finds given BiddingRepresentation by given Id
+     * @return
+     */
+    BiddingRepresentation getById(Integer id);
 
 }

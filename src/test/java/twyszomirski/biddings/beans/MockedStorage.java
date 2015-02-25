@@ -13,16 +13,11 @@ import java.util.List;
  */
 @Alternative
 @ApplicationScoped
-public class MockedStorage implements IStorage{
-
+public class MockedStorage extends Storage{
 
     @Override
     public List<BiddingRepresentation> getCurrentBiddings() {
         return  Arrays.asList(new BiddingRepresentation(1, "name_1", "part1", "part2"), new BiddingRepresentation(2, "name_2", "part1", "part2"));
     }
 
-    @Override
-    public BiddingRepresentation createBidding(String name) {
-        return null;
-    }
 }

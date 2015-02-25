@@ -1,5 +1,7 @@
 package twyszomirski.biddings.beans;
 
+import jersey.repackaged.com.google.common.base.Predicate;
+import jersey.repackaged.com.google.common.collect.Iterables;
 import twyszomirski.biddings.representations.BiddingRepresentation;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +24,9 @@ public class Storage implements IStorage{
      */
     private List<BiddingRepresentation> biddingsStore;
 
+    /**
+     * Id generator
+     */
     private AtomicInteger nextId;
 
     @PostConstruct
@@ -37,7 +42,19 @@ public class Storage implements IStorage{
 
     @Override
     public BiddingRepresentation createBidding(String name) {
-        return new BiddingRepresentation(name, nextId.incrementAndGet());
+        BiddingRepresentation result = new BiddingRepresentation(name, nextId.incrementAndGet());
+        biddingsStore.add(result);
+        return result;
+    }
+
+    @Override
+    public BiddingRepresentation getById(final Integer id) {
+        return Iterables.find(biddingsStore, new Predicate<BiddingRepresentation>() {
+            @Override
+            public boolean apply(BiddingRepresentation biddingRepresentation) {
+                return id.equals(biddingRepresentation.getId());
+            }
+        });
     }
 
 }
